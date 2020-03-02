@@ -44,7 +44,6 @@ $response->execute();
 //    echo json_encode($info);
 //}
 
-$_SESSION['player'] = "playerOne";
 while($result = $response->fetch(PDO::FETCH_OBJ)){
     if ($_SESSION['player'] == "playerOne"){
         loadElementsGridIntoHTMLPlayerOne($result->mot, $result->place, $result->team, $result->find);
@@ -93,9 +92,15 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
     <div class="wrapper">
         JEU FINI !
     </div>
+       
+       
         <?php if ($_SESSION['player'] == "playerOne"){ ?>
 
-    <div class="view"><i class="fas fa-eye"></i></div> <?php } ?>
+    <div class="view"><i class="fas fa-eye"></i></div> <?php } 
+    
+    else{
+        ?><div style="display:none;" class="view"><i class="fas fa-eye"></i></div> <?php
+    }?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="js/custom.min.js"></script>

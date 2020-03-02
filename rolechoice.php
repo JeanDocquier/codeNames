@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php session_start() ?>
 <html lang="en">
 
 <head>
@@ -17,21 +17,15 @@
 
     <h1>CODE NAMES</h1>
     <div class="intro-wrapper">
-        <form method="post" action="rolechoice.php">
-            <input type="hidden" name="newgame" value="true">
-            <button class="nouvelle_partie">Nouvelle partie</button>
+        <form class="choix_role" method="post" action="game.php">
+            <input type="radio" name="role" id="playerOne" value="playerOne">
+            <label for="playerOne">Faire deviner les mots</label>
+            <input type="radio" name="role" id="playerTwo" value="playerTwo">
+            <label for="playerTwo">Deviner les mots</label>
+            <input type="hidden" name="newgame" value="<?php echo $_POST['newgame'];?>">
+            <input type="hidden" name="partieid" value="<?php echo $_POST['partieid'];?>">
+            <button class="nouvelle_partie">Commencer partie</button>
         </form>
-        <form method="post" action="rolechoice.php">
-
-            <span class="entrer_partie">
-               Charger ID partie existante : <input required name="partieid" type="number">
-            </span>
-            <input type="hidden" name="newgame" value="false">
-            <button class="charger_partie">
-                GO
-            </button>
-        </form>
-        <button class="ajouter_mot">Ajouter un mot</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
