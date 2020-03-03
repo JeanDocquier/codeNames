@@ -87,12 +87,11 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
 
     <input type="hidden" name="redwordsremaning" value="<?php echo $result->mot_joueur1; ?>">
     <input type="hidden" name="bluewordsremaning" value="<?php echo $result->mot_joueur2; ?>">
-    <?php } ?>
     <div class="wrapper">
         JEU FINI !
     </div>
 
-        <div class="menu-button"><i class="fas fa-cog"></i></div>
+        <div class="menu-button"><i class="fas fa-bars"></i></div>
 
     <?php if ($_SESSION['player'] == "playerOne"){ ?>
 
@@ -126,6 +125,8 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="js/custom.min.js"></script>
+        <?php } ?>
+
 </body>
 
 </html>

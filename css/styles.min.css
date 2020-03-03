@@ -297,7 +297,7 @@ body {
   margin-right: auto;
 }
 
-button {
+.charger_partie, .nouvelle_partie, .ajouter_mot {
   width: 400px;
   height: 150px;
   display: flex;
@@ -469,4 +469,22 @@ h1 {
   height: 80px;
   border-radius: 25px;
   background-color: #46d86d;
+}
+
+.ajouter_mot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  padding: 100px;
+  text-align: center;
+}
+
+.ajouter_mot form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ajouter_mot form * {
+  margin-top: 15px;
 }

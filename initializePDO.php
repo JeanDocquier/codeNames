@@ -46,7 +46,6 @@ $myarray = array(8, 7 , 10);
 $i = 1;
 $j = 1;
 $team;
-$emparray = array();                 
 if($result2 = $response2->fetch(PDO::FETCH_OBJ)){
     while($result2 = $response2->fetch(PDO::FETCH_OBJ)) {
     if ($j >5){

@@ -31,11 +31,22 @@
                 GO
             </button>
         </form>
-        <button class="ajouter_mot">Ajouter un mot</button>
+        <div class="ajouter_mot">
+            <form method="post" action="addwordPDO.php">
+               <span>            Ajouter un mot : </span>
+                <input class="mot-utilisateur" type="text">
+                <span class="message"></span>
+            </form>
+            <button class="ajouter">Ajouter</button>
+
+        </div>
+        
+        
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="js/custom.min.js"></script>
+    <script src="js/add.js"></script>
 </body>
 
 </html>
