@@ -16,10 +16,9 @@
 </head>
 
 <body>
-   <button class="fin_de_tour">Finir Tour</button>
-   <div class="id_parteid">
-       Partie numéro : <?php echo $_SESSION['gameIDtoload']; ?>
-   </div>
+    <div class="id_parteid">
+        Partie numéro : <?php echo $_SESSION['gameIDtoload']; ?>
+    </div>
     <div class="words-wrapper">
         <?php
         
@@ -92,14 +91,37 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
     <div class="wrapper">
         JEU FINI !
     </div>
-       
-       
-        <?php if ($_SESSION['player'] == "playerOne"){ ?>
 
-    <div class="view"><i class="fas fa-eye"></i></div> <?php } 
+        <div class="menu-button"><i class="fas fa-cog"></i></div>
+
+    <?php if ($_SESSION['player'] == "playerOne"){ ?>
+
+    <div class="view"><i class="fas fa-eye"></i></div>
+
+    <div class="menu">
+
+        <div class="indice">
+            <span>Votre indice</span>
+            <input class="indice_mot" type="text">
+            en <input class="indice_nombre" type="number">
+        </div>
+        <button class="fin_de_tour">Finir Tour</button>
+
+    </div>
+    <?php } 
     
     else{
-        ?><div style="display:none;" class="view"><i class="fas fa-eye"></i></div> <?php
+        ?><div style="display:none;" class="view"><i class="fas fa-eye"></i></div>
+    <div class="menu">
+
+        <div class="indice-donne">
+        <?php echo $result->indice_courant; ?>
+    </div>
+        <button class="fin_de_tour">Finir Tour</button>
+
+    </div>
+       
+       <?php
     }?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 

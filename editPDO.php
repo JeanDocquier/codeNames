@@ -15,6 +15,8 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
 }
 
 $sqlQuery = 'SELECT * FROM tb_elementgrille
+                INNER JOIN tb_partie
+                ON tb_elementgrille.partie_id = tb_partie.id_partie
                 WHERE place = :place 
                 AND partie_id= :partie';
                 $response2 = $pdo->prepare($sqlQuery);
@@ -30,7 +32,7 @@ if($result2 = $response2->fetch(PDO::FETCH_OBJ)){
   // Chaque seconde, envoi d’un évènement "ping".
 
   echo "event: ping\n";
-  echo 'data: {"place": "' . $result2->place . '", "team": "' . $result2->team . '"}';
+  echo 'data: {"place": "' . $result2->place . '", "team": "' . $result2->team . '", "hint": "' . $result2->indice_courant . '"}';
   echo "\n\n";
 
 

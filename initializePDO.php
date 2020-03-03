@@ -10,7 +10,7 @@ require_once('connexiondbPDO.php');
 
 
 /***** CREATION PARTIE ***/
-echo $insertSQL = "INSERT INTO tb_partie (id_joueur1, id_joueur2) 
+$insertSQL = "INSERT INTO tb_partie (id_joueur1, id_joueur2) 
                 VALUES (:joueur1, :joueur2)";
 $response = $pdo->prepare($insertSQL);
 $response->bindValue(':joueur1', 111, PDO::PARAM_STR);
@@ -35,7 +35,6 @@ if($result = $response->fetch(PDO::FETCH_OBJ)){
 }
 ///***** FIN RECUPERATION DE L'ID DE LA PARTIER CREE ***/
 
-echo $mypartie;
 
 
 
@@ -43,7 +42,7 @@ echo $mypartie;
 $sqlQuery2 = 'SELECT * FROM tb_mots ORDER BY RAND() LIMIT 26'; 
 $response2 = $pdo->prepare($sqlQuery2);
 $response2->execute();
-$myarray = array(8, 7 , 9 , 1);
+$myarray = array(8, 7 , 10);
 $i = 1;
 $j = 1;
 $team;
@@ -55,9 +54,9 @@ if($result2 = $response2->fetch(PDO::FETCH_OBJ)){
         $i++;
     }
     $place = $i ."x".$j;
-    $random = rand (0, 3);
+    $random = rand (0, 2);
     while ($myarray[$random] == 0){
-        $random = rand (0, 3);
+        $random = rand (0, 2);
     }    
     if($random == 0) {
         $team = "redteam";
@@ -68,15 +67,27 @@ if($result2 = $response2->fetch(PDO::FETCH_OBJ)){
     else if ($random == 2){
         $team = "neutral";
     }
-    else if ($random == 3){
-        $team = "blackword";
-    } 
+//    else if ($random == 3){
+//        $team = "blackword";
+//    } 
     insertElementGrilleIntoDB($team, $place, $mypartie, $pdo, $response, $insertSQL, $result2->mots);
     //insertElementGrilleIntoHTMLPlayerOne($result2->mots, $place, $team);
     $myarray[$random]--;
     $j++;
     }
 }
+/** RANDOMISATION DU MOT NOIR SUR BASE DES MOTS NEUTRES **/
+$updateSQL = 'UPDATE `tb_elementgrille` 
+                SET team="blackword" 
+                WHERE team="neutral" 
+                AND partie_id=:partie 
+                ORDER BY RAND() limit 1 ';
+                $response = $pdo->prepare($updateSQL);
+                $response->bindValue(':partie', $_SESSION['gameIDtoload'], PDO::PARAM_STR);
+$response->execute();
+/** FIN RANDOMISATION DU MOT NOIR SUR BASE DES MOTS NEUTRES **/
+
+
 header("Refresh:0; url=loadPDO.php");
 function insertElementGrilleIntoDB($theteam, $theplace, $themypartie, $thepdo, $theresponse, $theinsertSQL, $theword){
 
